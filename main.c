@@ -10,10 +10,11 @@ pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 
 // Флаг готовности события
 bool ready = false;
+int count = 0;
 
 // Функция поставщика
 void *provide() {
-    while (1) {
+    while (count < 25) {
         sleep(1); // Задержка 1 секунда
         
         pthread_mutex_lock(&lock);
@@ -25,6 +26,7 @@ void *provide() {
 
         ready = true;
         printf("ПИНГ\n");
+        count++;
         
         pthread_cond_signal(&cond);
         pthread_mutex_unlock(&lock);
@@ -34,7 +36,7 @@ void *provide() {
 
 // Функция потребителя
 void *consume() {
-    while (1) {
+    while (count < 25) {
         pthread_mutex_lock(&lock);
         
         while (!ready) {
@@ -65,7 +67,6 @@ int main() {
         exit(1);
     }
 
-    // Ожидаем завершения потоков, хотя они бесконечны))))
     pthread_join(producer, NULL);
     pthread_join(consumer, NULL);
 
