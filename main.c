@@ -9,8 +9,8 @@ pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
 
 // Флаг готовности события
-bool ready = false;
-int count = 0;
+bool volatile ready = false;
+int volatile count = 0;
 
 // Функция поставщика
 void *provide() {
