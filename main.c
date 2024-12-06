@@ -23,7 +23,7 @@ void *provide() {
             pthread_cond_wait(&cond, &lock);
         }
 
-        ready = true; // Устанавливаем флаг готовности
+        ready = true;
         printf("ПИНГ\n");
         
         pthread_cond_signal(&cond);
@@ -42,7 +42,7 @@ void *consume() {
             pthread_cond_wait(&cond, &lock);
         }
 
-        ready = false; // Сбрасываем флаг готовности
+        ready = false;
         printf("ПОНГ\n");
         
         pthread_cond_signal(&cond);
