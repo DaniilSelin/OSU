@@ -24,7 +24,7 @@ void *provide() {
         }
 
         ready = true; // Устанавливаем флаг готовности
-        printf("НАПАКОСТИЛ\n");
+        printf("ПИНГ\n");
         
         pthread_cond_signal(&cond);
         pthread_mutex_unlock(&lock);
@@ -43,7 +43,7 @@ void *consume() {
         }
 
         ready = false; // Сбрасываем флаг готовности
-        printf("ИСПРАВИЛ\n");
+        printf("ПОНГ\n");
         
         pthread_cond_signal(&cond);
         pthread_mutex_unlock(&lock);
