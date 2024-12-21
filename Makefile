@@ -1,4 +1,4 @@
-obj-m := laba3.o
+obj-m := tsulab4.o
 
 PWD := $(CURDIR)
 
